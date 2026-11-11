@@ -148,3 +148,15 @@ body {
 
 /* Respeita quem prefere menos animação */
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+#conteudo {
+    /* Estilos para #conteudo */
+}
+
+#mensagem {
+    /* Estilos para #mensagem */
+}
+
+#lista {
+    /* Estilos para #lista */
+}
