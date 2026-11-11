@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- ============================================================
+  NORDESTE EXPLORER - index.html
+  Este arquivo define a ESTRUTURA da página (o "esqueleto").
+  Fica na mesma pasta que style.css e script.js.
+============================================================= -->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Faz o site se adaptar a celulares e tablets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nordeste Explorer — Descubra o Nordeste Brasileiro</title>
+
+  <!-- CSS do Leaflet (biblioteca do mapa, gratuita) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <!-- Nosso CSS (deve vir DEPOIS do Leaflet para podermos ajustar estilos) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Link de acessibilidade: permite pular direto para o conteúdo via teclado -->
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- CABEÇALHO -->
+  <header class="topo">
+    <h1>Nordeste Explorer</h1>
+    <p>Descubra o Nordeste Brasileiro: escolha um destino na lista ou no mapa.</p>
+  </header>
+
+  <main id="conteudo" class="layout">
+
+    <!-- PAINEL LATERAL: busca, filtros e lista -->
+    <section class="painel" aria-label="Busca e lista de destinos">
+
+      <label for="busca" class="rotulo">Buscar destino pelo nome</label>
+      <input id="busca" type="search" placeholder="Ex.: Olinda" autocomplete="off">
+
+      <!-- Botões de filtro. data-cat deve ser igual à categoria usada no script.js -->
+      <div class="filtros" role="group" aria-label="Filtrar por categoria">
+        <button class="filtro ativo" data-cat="todos" aria-pressed="true">Todos</button>
+        <button class="filtro" data-cat="praias" aria-pressed="false">Praias</button>
+        <button class="filtro" data-cat="natureza" aria-pressed="false">Natureza</button>
+        <button class="filtro" data-cat="cultura" aria-pressed="false">Cultura</button>
+        <button class="filtro" data-cat="historia" aria-pressed="false">História</button>
+        <button class="filtro" data-cat="aventura" aria-pressed="false">Aventura</button>
+      </div>
+
+      <!-- Mensagem de status (resultados / nada encontrado). aria-live avisa leitores de tela -->
+      <p id="mensagem" class="mensagem" aria-live="polite"></p>
+
+      <!-- O script.js cria os cartões aqui dentro -->
+      <ul id="lista" class="lista"></ul>
+    </section>
+
+    <!-- ÁREA DO MAPA: o Leaflet desenha o mapa dentro desta div -->
+    <section class="area-mapa" aria-label="Mapa interativo">
+      <div id="mapa"></div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ: créditos e atribuições (obrigatórios) -->
+  <footer class="rodape">
+    <p>
+      Mapa: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">colaboradores do OpenStreetMap</a>
+      (licença ODbL) · Biblioteca: <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>.
+    </p>
+    <p>Projeto acadêmico do curso de Turismo. Coordenadas aproximadas: confirme no local antes de viajar.</p>
+  </footer>
+
+  <!-- JS do Leaflet (antes do nosso script) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Nosso código (por último, para que o HTML já exista quando ele rodar) -->
+  <script src="script.js"></script>
+</body>
+</html>

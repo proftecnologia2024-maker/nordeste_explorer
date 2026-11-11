@@ -1,0 +1,150 @@
+/* ============================================================
+   NORDESTE EXPLORER - style.css
+   Controla as CORES, o LAYOUT e a responsividade.
+============================================================= */
+
+/* 1) Variáveis de cor: mude aqui para alterar a identidade visual */
+:root {
+  --azul-mar: #0b5d8a;
+  --azul-escuro: #083d5c;
+  --verde: #1f8a5b;
+  --areia: #f6ecd6;
+  --areia-escura: #e8d6ae;
+  --coral: #e8573d;
+  --sol: #f4b41a;
+  --texto: #1d2b33;
+  --branco: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--texto);
+  background: var(--areia);
+  line-height: 1.5;
+}
+
+/* Foco visível para quem navega pelo teclado */
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+
+.pular { position: absolute; left: -999px; }
+.pular:focus { left: 8px; top: 8px; background: var(--branco); padding: 8px; z-index: 2000; }
+
+/* 2) Cabeçalho */
+.topo {
+  background: linear-gradient(90deg, var(--azul-escuro), var(--azul-mar) 60%, var(--verde));
+  color: var(--branco);
+  padding: 20px 24px;
+  border-bottom: 6px solid var(--sol);
+}
+.topo h1 { margin: 0; font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: .5px; }
+.topo p { margin: 4px 0 0; opacity: .95; }
+
+/* 3) Layout principal: painel + mapa lado a lado (computador) */
+.layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  height: calc(100vh - 170px);
+  min-height: 520px;
+}
+
+.painel {
+  padding: 16px;
+  overflow-y: auto;
+  background: var(--areia);
+}
+
+.rotulo { font-weight: bold; display: block; margin-bottom: 6px; }
+
+#busca {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 2px solid var(--azul-mar);
+  border-radius: 8px;
+}
+
+/* 4) Filtros */
+.filtros { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.filtro {
+  border: 2px solid var(--azul-mar);
+  background: var(--branco);
+  color: var(--azul-escuro);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: .9rem;
+  cursor: pointer;
+}
+.filtro:hover { background: var(--areia-escura); }
+.filtro.ativo { background: var(--azul-mar); color: var(--branco); }
+
+.mensagem { min-height: 1.5em; font-weight: bold; color: var(--azul-escuro); }
+.mensagem.erro { color: var(--coral); }
+
+/* 5) Cartões dos destinos */
+.lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.cartao {
+  width: 100%;
+  text-align: left;
+  background: var(--branco);
+  border: 2px solid transparent;
+  border-left: 8px solid var(--cor, var(--azul-mar)); /* cor muda por categoria */
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.cartao:hover, .cartao.selecionado { border-color: var(--cor); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+.cartao h2 { margin: 0; font-size: 1.1rem; }
+.cartao .meta { margin: 2px 0 6px; font-size: .85rem; color: #4a5a63; }
+.cartao p { margin: 0; font-size: .9rem; }
+
+/* 6) Mapa */
+.area-mapa { position: relative; }
+#mapa { width: 100%; height: 100%; min-height: 360px; }
+
+/* Marcador colorido criado com CSS (não precisa de imagens) */
+.pino {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--cor);
+  border: 3px solid var(--branco);
+  box-shadow: 0 1px 6px rgba(0,0,0,.5);
+}
+
+/* Conteúdo do balão (popup) */
+.popup h3 { margin: 0 0 2px; color: var(--azul-escuro); }
+.popup .meta { margin: 0 0 6px; font-size: .85rem; color: #4a5a63; }
+.btn-rota {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--coral);
+  color: var(--branco) !important;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* 7) Rodapé */
+.rodape { background: var(--azul-escuro); color: var(--branco); padding: 12px 24px; font-size: .85rem; }
+.rodape p { margin: 2px 0; }
+.rodape a { color: var(--sol); }
+
+/* 8) Responsivo */
+/* Tablet: painel mais estreito */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 300px 1fr; }
+}
+/* Celular: mapa em cima, lista embaixo */
+@media (max-width: 700px) {
+  .layout { display: flex; flex-direction: column-reverse; height: auto; }
+  .area-mapa { height: 55vh; }
+  .painel { max-height: none; overflow: visible; }
+}
+
+/* Respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
