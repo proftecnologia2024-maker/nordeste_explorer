@@ -45,7 +45,7 @@ const destinos = [
     descricao: "Extremo leste das Américas, com falésia e praia em João Pessoa.",
     lat: -7.1489, lng: -34.7931 },
 
-    { id: "pb-cabo branco", nome: "Cabo Branco (João Pessoa)", estado: "Paraíba", categoria: "praias",
+  { id: "pb-cabo branco", nome: "Cabo Branco (João Pessoa)", estado: "Paraíba", categoria: "praias",
     descricao: "Extremo leste das Américas, com falésia e praia em João Pessoa.",
     lat: -7.134167, lng: -34.819722 },
   { id: "pb-campina", nome: "Campina Grande", estado: "Paraíba", categoria: "cultura",
